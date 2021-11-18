@@ -22,24 +22,19 @@ app.get("/notes", (req, res) => {
 
 // Post request
 app.post("/api/notes", (req,res) => {
-    fs.readFile(__dirname + "/db/db.json", `utf8`, (err, data) => {
+    fs.readFile(__dirname + "/db/db.json", `utf8`, (err, notes) => {
         if (err) throw err;
         // Declaring note variables
-        var notes = [JSON.parse(data)];
-        // var id = notes[notes.length - 1].id + 1;
-        // Object variables for notes
-        var newNote = {
-            title: req.body.title,
-            text: req.body.text,
-            // id: id
-        };
+        var notes = JSON.parse(notes);
+        // New note requires title and text of body
+        var newNote = req.body;
         // Combines active notes with newly created notes
         var activeNote = notes.concat(newNote);
 
         fs.writeFile(__dirname + "/db/db.json", JSON.stringify(activeNote), (err, data) => {
             if (err) throw err;
             console.log(activeNote);
-            res.json(activeNote)
+            res.json(activeNote);
         })
     })
 });
