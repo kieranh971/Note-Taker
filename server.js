@@ -20,6 +20,7 @@ app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
+
 // Post request
 app.post("/api/notes", (req,res) => {
     fs.readFile(__dirname + "/db/db.json", `utf8`, (err, notes) => {
@@ -33,7 +34,7 @@ app.post("/api/notes", (req,res) => {
 
         fs.writeFile(__dirname + "/db/db.json", JSON.stringify(activeNote), (err, data) => {
             if (err) throw err;
-            console.log(activeNote);
+            // console.log(activeNote);
             res.json(activeNote);
         })
     })
@@ -43,16 +44,11 @@ app.post("/api/notes", (req,res) => {
 app.get("/api/notes", (req, res) => {
     fs.readFile(__dirname + "/db/db.json", 'utf8', (err, data) => {
         if (err) throw err;
-        console.log("Notes", data);
         res.json(JSON.parse(data));
     });
 })
 
-// app.get("/api/notes/:id", (req, res) => {
-//     res.json(notes[req.params.id]);
-// })
-
 // Starts server
 app.listen(PORT, () => {
-    console.log(`Listening for server at ${PORT}`)
+    console.log(`Listening for server at localhost:${PORT}`)
 });
