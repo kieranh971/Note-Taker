@@ -15,3 +15,6 @@ Otherwise, you can deploy the Note-Taker app on Heroku by following this link: h
 
 # Github Repo
 View the code here: https://github.com/kieranh971/Note-Taker
+
+# Planned Feature
+Add "Delete" functionality. On click of the trash can icon, user will be able to delete any notes they no longer need. Will need to assign each note a unique id in order to do this.
