@@ -11,10 +11,10 @@ If the user would like to add a new note, the user can click on the + icon to ad
 
 # Instalation
 User must run npm install to install all depedencies. To use the app on a local computer, the user can run node server.js in your integrated terminal. This will deploy the app at http://localhost:3001.
-Other wise, you can deploy the Note-Taker app on Heroku by following this link: 
+Otherwise, you can deploy the Note-Taker app on Heroku by following this link: https://young-springs-31965.herokuapp.com/
 
 # Github Repo
-View the code here: 
+View the code here: https://github.com/kieranh971/Note-Taker
 ```
 GIVEN a note-taking application
 WHEN I open the Note Taker
