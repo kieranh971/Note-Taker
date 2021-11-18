@@ -25,21 +25,21 @@ app.post("/api/notes", (req,res) => {
     fs.readFile(__dirname + "/db/db.json", `utf8`, (err, data) => {
         if (err) throw err;
         // Declaring note variables
-        notes = JSON.parse(data);
-        var id = notes[notes.length - 1].id + 1;
+        var notes = [JSON.parse(data)];
+        // var id = notes[notes.length - 1].id + 1;
         // Object variables for notes
-        var createNote = {
+        var newNote = {
             title: req.body.title,
             text: req.body.text,
-            id: id
-        }
+            // id: id
+        };
         // Combines active notes with newly created notes
-        var currentNote = notes.concat(createNote)
+        var activeNote = notes.concat(newNote);
 
-        fs.writeFile(__dirname + "/db/db.json", JSON.stringify(createNote), (err, data) => {
+        fs.writeFile(__dirname + "/db/db.json", JSON.stringify(newNote), (err, data) => {
             if (err) throw err;
-            console.log(currentNote);
-            res.json(currentNote)
+            console.log(activeNote);
+            res.json(activeNote)
         })
     })
 });
@@ -52,6 +52,10 @@ app.get("/api/notes", (req, res) => {
         res.json(JSON.parse(data));
     });
 })
+
+// app.get("/api/notes/:id", (req, res) => {
+//     res.json(notes[req.params.id]);
+// })
 
 // Starts server
 app.listen(PORT, () => {
