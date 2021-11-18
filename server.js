@@ -36,7 +36,7 @@ app.post("/api/notes", (req,res) => {
         // Combines active notes with newly created notes
         var activeNote = notes.concat(newNote);
 
-        fs.writeFile(__dirname + "/db/db.json", JSON.stringify(newNote), (err, data) => {
+        fs.writeFile(__dirname + "/db/db.json", JSON.stringify(activeNote), (err, data) => {
             if (err) throw err;
             console.log(activeNote);
             res.json(activeNote)
