@@ -36,13 +36,22 @@ app.post("/api/notes", (req,res) => {
         // Combines active notes with newly created notes
         var currentNote = notes.concat(createNote)
 
-        fs.writeFile(__dirname + "./db/db.json",JSON.stringify(createNote), (err, data) => {
+        fs.writeFile(__dirname + "./db/db.json", JSON.stringify(createNote), (err, data) => {
             if (err) throw err;
             console.log(currentNote);
             res.json(currentNote)
         })
     })
 });
+
+// Retrive info from db.json
+app.get("/api/notes", (req, res) => {
+    fs.readFile(__dirname + "./db/db.json", 'utf8', (err, data) => {
+        if (err) throw err;
+        console.log("Notes", data);
+        res.json(JSON.parse(data));
+    });
+})
 
 // Starts server
 app.listen(PORT, () => {
